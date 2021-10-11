@@ -1,10 +1,16 @@
 import express from "express";
-import user_router from "./route/users";
+import userRouter from "./route/user.js";
+import boardRouter from "./route/boards.js";
+
+import db from './models/index.js';
 
 const app = express();
 
-app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
-app.use("/users", user_router);
-
-app.listen(3001);
+db.sequelize.sync().then(()=>{
+    console.log("sync 끝")
+    app.use(express.json());
+    app.use(express.urlencoded({ extended: true }));
+    app.use("/users", userRouter);
+    app.use("/boards", boardRouter);
+    app.listen(3001);
+});
