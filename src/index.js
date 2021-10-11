@@ -1,6 +1,6 @@
 import express from "express";
 import userRouter from "./route/user.js";
-import boardRouter from "./route/boards.js";
+import boardRouter from "./route/board.js";
 
 import db from './models/index.js';
 
